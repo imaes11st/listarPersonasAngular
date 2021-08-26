@@ -12,7 +12,8 @@
         id="nombre"
         placeholder="Nombre"
         class="form-control"
-        [(ngModel)]="nombreInput">
+        [(ngModel)]="nombreInput"
+      />
     </div>
     <div class="form-group col-md-2">
       <label for="apellido" class="visually-hidden">Apellido</label>
@@ -32,13 +33,9 @@
     </div>
   </form>
 </div>
-
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div *ngFor="let persona of personas; let i = index">
-        {{ i + 1 }}:{{ persona.nombre }}{{ persona.apellido }}
-      </div>
-    </div>
-  </div>
-</div>
+<app-persona
+  *ngFor="let personaElemento of personas; let i = index"
+  [persona]="personaElemento"
+  [indice]="i"
+>
+</app-persona>
