@@ -1,10 +1,11 @@
 import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { LoggingService } from '../LoggingService.service';
 import { Persona } from '../persona.model';
 
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+  styleUrls: ['./formulario.component.css'],
 })
 export class FormularioComponent {
   
@@ -16,8 +17,12 @@ export class FormularioComponent {
   @ViewChild('nombreInput') nombreInput: ElementRef;
   @ViewChild('apellidoInput') apellidoInput: ElementRef;
 
-  agregarPersona(){
+  constructor(private loggingService:LoggingService){
+
+  }
+  onAgregarPersona(){
     let persona1 = new Persona(this.nombreInput.nativeElement.value, this.apellidoInput.nativeElement.value);
+    this.loggingService.enviarMensajeAConsola("Enviamos persona"+persona1.nombre + persona1.apellido);
     this.personaCreada.emit(persona1);
   }
   
